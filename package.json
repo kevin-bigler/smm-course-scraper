@@ -1,0 +1,15 @@
+{
+  "name": "smm-course-scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kevin-bigler/smm-course-scraper.git",
+  "author": "Kevin Bigler kevinbigler@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "mocha": "^5.1.1"
+  }
+}
