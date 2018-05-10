@@ -1,3 +1,5 @@
+const cheerio = require('cheerio');
+
 /**
  * Helper utility method to determine if a value is numeric
  *
@@ -12,7 +14,7 @@ const isNumeric = (val) => !isNaN(val);
  *
  *     <div class="typography-container liked-count">
  *         <div class="typography typography-1"><svg/></div>
- *         <div class="typography typography-6">svg/></div>
+ *         <div class="typography typography-6"><svg/></div>
  *     </div>
  *
  * </pre></p>
@@ -38,6 +40,19 @@ class TypographyParser {
      */
     parse(element) {
         // TODO: write test first, then impl
+
+        // cheerio(element).children('.typography').each((index, el) => {
+        //     // get classes as a string (space-delimited): cheerio(el).attr('class')
+        //     console.log('el attr class: ', cheerio(el).attr('class'));
+        //     const value = cheerio(el).attr('class')
+        //         .split(' ')
+        //         .filter(it => it.indexOf('typography-') !== -1)
+        //         .map(it => it.substr('typography-'.length))
+        //         .join();
+        //
+        //     console.log('typography VALUE:', value);
+        // });
+
         return null;
     }
 }
