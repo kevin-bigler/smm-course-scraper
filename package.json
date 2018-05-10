@@ -6,10 +6,13 @@
   "author": "Kevin Bigler kevinbigler@gmail.com",
   "license": "MIT",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha src/test/*.js"
   },
   "devDependencies": {
     "jest": "^22.4.3",
     "mocha": "^5.1.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
   }
 }

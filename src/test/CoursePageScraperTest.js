@@ -1,5 +1,9 @@
 const assert = require('assert');
-const CoursePageScraper = require('main/service/CoursePageScraper');
+const fs = require('fs');
+const path = require('path');
+const CoursePageScraper = require('../main/service/CoursePageScraper');
+
+const PATH_HTML_FILE = path.resolve('src/resources/example_level/', 'SUPER MARIO MAKER BOOKMARK _ You Can Go the Distance! - 1DAB-0000-03A0-CA78.htm');
 
 describe('CoursePageScraper', () => {
     describe('#scrape()', () => {
@@ -8,12 +12,12 @@ describe('CoursePageScraper', () => {
 
         before(() => {
             uut = new CoursePageScraper();
-            html = ''; // TODO load HTML from file "resources/example_level/SUPER MARIO MAKER BOOKMARK _ You Can Go the Distance! - 1DAB-0000-03A0-CA78.htm"
+            html = fs.readFileSync(PATH_HTML_FILE, 'utf8');
         });
 
         it('gets correct data from the scraped page', () => {
             const expected = {
-                id: '1DAB-0000-03A0-CA78',
+                code: '1DAB-0000-03A0-CA78',
                 title: 'You Can Go the Distance!',
                 stats: {
                     attempts: 8,
@@ -25,7 +29,7 @@ describe('CoursePageScraper', () => {
             };
             const actual = uut.scrape(html);
 
-            assert.equal(actual, expected);
+            assert.deepEqual(actual, expected);
         });
     });
 });
