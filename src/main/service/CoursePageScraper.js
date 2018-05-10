@@ -34,11 +34,11 @@ class CoursePageScraper {
             // createdAt,
             // creator, // (name, ID, nationality, picture)
             stats: {    // numbers
-                attempts: this.typographyParser.parse($('.tried-count')),
-                clears: this.getClears(html),
-                players: this.getPlayers(html),
-                stars: this.getStars(html),
-                shares: this.getShares(html)
+                attempts: this.typographyParser.parse($('.tried-count')).split('/')[1],
+                clears: this.typographyParser.parse($('.tried-count')).split('/')[0],
+                players: this.typographyParser.parse($('.played-count')),
+                stars: this.typographyParser.parse($('.liked-count')),
+                shares: this.typographyParser.parse($('.shared-count'))
             },
             // clearRate,
             // difficulty, // (Easy, Normal, Expert, Super Expert)
@@ -53,31 +53,6 @@ class CoursePageScraper {
             //     starredBy: []
             // }
         };
-    }
-
-    getAttempts(html) {
-        const $ = cheerio.load(html);
-        return this.typographyParser.parse($('.tried-count'));
-    }
-
-    getClears(html) {
-        // TODO
-        return '';
-    }
-
-    getPlayers(html) {
-        // TODO
-        return '';
-    }
-
-    getStars(html) {
-        // TODO
-        return '';
-    }
-
-    getShares(html) {
-        // TODO
-        return '';
     }
 
 }

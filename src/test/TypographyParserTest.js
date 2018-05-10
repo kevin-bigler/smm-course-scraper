@@ -35,7 +35,7 @@ describe('TypographyParser', () => {
          * @param expected Expected typography value (ie from {@code uut.parse()}
          */
         const testUsingFile = (fileName, expected) => {
-            assert.equal(uut.parse(getTestHtml(fileName)), expected);
+            assert.strictEqual(uut.parse(getTestHtml(fileName)), expected);
         };
 
         it('reads basic integer, returns as number', () => {
@@ -51,7 +51,7 @@ describe('TypographyParser', () => {
         });
 
         it('accepts HTML element OBJECT, instead of String HTML', () => {
-            uut.parse(cheerio(getTestHtml('basic-integer')), 81);
+            assert.strictEqual(uut.parse(cheerio(getTestHtml('basic-integer'))), 81);
         });
 
         it('reads colons, returns value as a string', () => {

@@ -54,7 +54,10 @@ class TypographyParser {
             tokens.push(this._parseToken(cheerio(el).attr('class')));
         });
 
-        return tokens.map(this.symbolMapper.map).join('');
+        const value = tokens.map(this.symbolMapper.map)
+            .join('');
+
+        return isNumeric(value) ? Number(value) : value;
     }
 
     /**

@@ -14,9 +14,9 @@ describe('SymbolMapper', () => {
             assert.equal(uut.map('other-fake-thing'), 'other-fake-thing');
             assert.equal(uut.map('foo'), 'foo');
             assert.equal(uut.map('bar'), 'bar');
-            assert.equal(uut.map('0'), '0');
-            assert.equal(uut.map(8), 8);
-            assert.equal(uut.map(12.34), 12.34);
+            assert.strictEqual(uut.map('0'), '0');
+            assert.strictEqual(uut.map(8), 8);
+            assert.strictEqual(uut.map(12.34), 12.34);
         });
 
         it('maps to `.`', () => {
