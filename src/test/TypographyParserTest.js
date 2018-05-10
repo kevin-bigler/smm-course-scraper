@@ -1,7 +1,9 @@
 const assert = require('assert');
 const TypographyParser = require('../main/service/TypographyParser');
+const SymbolMapper = require('../main/service/SymbolMapper');
 const fs = require('fs');
 const path = require('path');
+const cheerio = require('cheerio');
 
 const DIR_TESTS = path.resolve('src/resources/test', 'typography');
 
@@ -10,8 +12,18 @@ describe('TypographyParser', () => {
         let uut;
 
         before(() => {
-            uut = new TypographyParser();
+            uut = new TypographyParser(new SymbolMapper());
         });
+
+        /**
+         * Loads contents from {@code .html} file (test resource) as a String, synchronously
+         *
+         * @param fileName String. WITHOUT extension
+         * @return {string} file contents of the given {@code fileName}
+         */
+        const getTestHtml = (fileName) => {
+            return fs.readFileSync(path.resolve(DIR_TESTS, `${fileName}.html`), 'utf8');
+        };
 
         /**
          * <p>Runs a test against typography HTML block found in a file (test resource)</p>
@@ -23,8 +35,7 @@ describe('TypographyParser', () => {
          * @param expected Expected typography value (ie from {@code uut.parse()}
          */
         const testUsingFile = (fileName, expected) => {
-            const contents = fs.readFileSync(path.resolve(DIR_TESTS, `${fileName}.html`));
-            assert.equal(uut.parse(contents), expected);
+            assert.equal(uut.parse(getTestHtml(fileName)), expected);
         };
 
         it('reads basic integer, returns as number', () => {
@@ -36,19 +47,19 @@ describe('TypographyParser', () => {
         });
 
         it('reads number with a decimal, returns value as a number', () => {
-            // TODO
+            testUsingFile('decimal-number', 25.430)
         });
 
         it('accepts HTML element OBJECT, instead of String HTML', () => {
-            // TODO
+            uut.parse(cheerio(getTestHtml('basic-integer')), 81);
         });
 
         it('reads colons, returns value as a string', () => {
-            // TODO
+            testUsingFile('clear-time', '00:01.083');
         });
 
         it('reads slash, returns value as a string', () => {
-            // TODO
+            testUsingFile('tried-count', '3/8');
         });
     });
 });

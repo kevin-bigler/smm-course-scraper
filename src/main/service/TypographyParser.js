@@ -24,6 +24,15 @@ const isNumeric = (val) => !isNaN(val);
  */
 class TypographyParser {
     /**
+     * TODO: explain dependencies
+     *
+     * @param symbolMapper SymbolMapper
+     */
+    constructor(symbolMapper) {
+        this.symbolMapper = symbolMapper;
+    }
+
+    /**
      * <p>Parses number or string value from Nintendo's "typography" HTML blocks -- how it conveys information like
      * Star Count, Play Count, Completion Ratio, and World Record Time.</p>
      *
@@ -39,21 +48,26 @@ class TypographyParser {
      * @param element The HTML Element object or String that wraps/contains the {@code .typography} elements
      */
     parse(element) {
-        // TODO: write test first, then impl
+        const tokens = [];
 
-        // cheerio(element).children('.typography').each((index, el) => {
-        //     // get classes as a string (space-delimited): cheerio(el).attr('class')
-        //     console.log('el attr class: ', cheerio(el).attr('class'));
-        //     const value = cheerio(el).attr('class')
-        //         .split(' ')
-        //         .filter(it => it.indexOf('typography-') !== -1)
-        //         .map(it => it.substr('typography-'.length))
-        //         .join();
-        //
-        //     console.log('typography VALUE:', value);
-        // });
+        cheerio(element).children('.typography').each((index, el) => {
+            tokens.push(this._parseToken(cheerio(el).attr('class')));
+        });
 
-        return null;
+        return tokens.map(this.symbolMapper.map).join('');
+    }
+
+    /**
+     * Parses typography tokens from an HTML element's {@code class} attribute value
+     *
+     * @param classes <em>String</em>, as is from the HTML element (ie {@code class} attribute value)
+     * @private
+     */
+    _parseToken(classes) {
+        return classes.split(' ')
+            .filter(it => it.indexOf('typography-') !== -1)
+            .map(it => it.substr('typography-'.length))
+            .join('');
     }
 }
 
