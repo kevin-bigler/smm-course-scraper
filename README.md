@@ -1,6 +1,10 @@
 # smm-course-scraper
 Here we go again!!!
 
+```bash
+yarn test
+```
+
 
 https://supermariomakerbookmark.nintendo.net/profile/thek3vinator?type=posted
 
