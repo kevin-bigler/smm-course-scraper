@@ -12,7 +12,7 @@ const TEST_COURSE_PAGE_HTML = '<html><head><title>Test Page</title></head><body>
 // TODO -- even better might be to stand up a fake server, ie integration test. then mock the endpoints we're testing
 describe('NintendoBookmarkPageClient', () => {
     let uut;
-    before(() => {
+    beforeAll(() => {
         uut = new NintendoBookmarkPageClient();
     });
     describe('#getCoursePage', () => {

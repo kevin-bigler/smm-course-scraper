@@ -5,7 +5,7 @@ describe('SymbolMapper', () => {
     describe('#map()', () => {
         let uut;
 
-        before(() => {
+        beforeAll(() => {
             uut = new SymbolMapper();
         });
 

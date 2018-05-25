@@ -12,7 +12,7 @@ describe('CoursePageScraper (Integration)', () => {
         let uut;
         let html;
 
-        before(() => {
+        beforeAll(() => {
             uut = new CoursePageScraper(new TypographyParser(new SymbolMapper()));
             html = fs.readFileSync(PATH_HTML_FILE, 'utf8');
         });

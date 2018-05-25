@@ -6,7 +6,7 @@
   "author": "Kevin Bigler kevinbigler@gmail.com",
   "license": "MIT",
   "scripts": {
-    "test": "mocha src/test/*.js"
+    "test": "jest src"
   },
   "devDependencies": {
     "jest": "^22.4.3",

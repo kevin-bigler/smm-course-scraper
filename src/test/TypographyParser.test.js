@@ -11,7 +11,7 @@ describe('TypographyParser', () => {
     describe('#parse', () => {
         let uut;
 
-        before(() => {
+        beforeAll(() => {
             uut = new TypographyParser(new SymbolMapper());
         });
 
